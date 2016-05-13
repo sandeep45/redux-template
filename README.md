@@ -90,11 +90,14 @@ chrome-user-data
 
 #### Setup Output and Input Directory/File
 
+````
 mkdir dist src test
 touch dist/index.html
+````
 
 #### Add template for index.html
 
+````
 echo '<!DOCTYPE html>
 <html>
 <head>
@@ -109,9 +112,11 @@ echo '<!DOCTYPE html>
 <script src="bundle.js"> </script>
 </body>
 </html>' > dist/index.html
+````
 
 #### make basic directory structure
 
+````
 cd src
 mkdir js
 cd js
@@ -132,6 +137,7 @@ mkdir constants
 touch constants/index.js
 
 mkdir containers
+````
 
 #### add template for index.js
 
