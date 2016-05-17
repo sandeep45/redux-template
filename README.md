@@ -10,7 +10,7 @@ touch README.md
 
 ````
 npm install --save react react-dom redux react-redux keymirror axios css-loader style-loader file-loader url-loader redux-thunk redux-logger
-npm install --save-dev webpack babel webpack-dev-server babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-1 redux-devtools react-addons-test-utils mocha expect babel-register react-addons-test-utils
+npm install --save-dev webpack babel webpack-dev-server babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-1 redux-devtools react-addons-test-utils mocha expect babel-register react-addons-test-utils redux-mock-store nock
 ````
 
 #### Setup Webpack
