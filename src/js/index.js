@@ -1,6 +1,9 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { Router, hashHistory } from 'react-router'
+
+import routes from './routes'
 import App from './components/App'
 import configureStore from './configureStore'
 
@@ -11,7 +14,9 @@ window.store = store; // for debugging only
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={hashHistory}>
+      {routes}
+    </Router>
   </Provider>,
   document.getElementById('root')
 );

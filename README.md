@@ -9,7 +9,7 @@ touch README.md
 #### Load Dependencies
 
 ````
-npm install --save react react-dom redux react-redux keymirror axios css-loader style-loader file-loader url-loader redux-thunk redux-logger
+npm install --save react react-dom redux react-redux keymirror axios css-loader style-loader file-loader url-loader redux-thunk redux-logger react-router
 npm install --save-dev webpack babel webpack-dev-server babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-1 redux-devtools react-addons-test-utils mocha expect babel-register react-addons-test-utils redux-mock-store nock
 ````
 
@@ -28,6 +28,11 @@ echo 'module.exports = {
   devServer: {
     inline: true,
     contentBase: "./dist",
+    proxy: {
+      '/notes*': {
+        target: 'http://localhost:3000'
+      }
+    }
   },
   module: {
     loaders: [
@@ -38,7 +43,19 @@ echo 'module.exports = {
         query: {
           presets: ["es2015", "react", "stage-1"]
         }
-      }
+      },
+      {
+        test: /.css$/,
+        loader: "style!css"
+      },
+      {
+        test: /\.(png|jpg)$/,
+        loader: 'url-loader?limit=8192' // inline base64 URLs for <=8k images, direct URLs for the rest
+      },
+      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
     ]
   }
 };' > webpack.config.js
@@ -57,7 +74,11 @@ echo '{
 
 ````
 git init
+````
 
+#### Add a .gitignore
+
+````
 echo ".DS_STORE
 node_modules
 *~
@@ -119,8 +140,11 @@ echo '<!DOCTYPE html>
 ````
 cd src
 mkdir js
+mkdir css
+touch css/app.css
 cd js
 touch index.js
+touch routes.js
 
 mkdir actions
 touch actions/index.js
@@ -128,7 +152,6 @@ touch actions/index.js
 mkdir reducers
 touch reducers/index.js
 touch reducers/reducer1.js
-touch reducers/reducer2.js
 
 mkdir components
 touch components/App.js
@@ -139,12 +162,30 @@ touch constants/index.js
 mkdir containers
 ````
 
+#### add template for app.css
+
+````
+echo "body {
+  padding-top: 50px;
+}
+.dashboard {
+  padding: 40px 15px;
+  text-align: center;
+}
+.container-fluid {
+  margin-top: 20px;
+}" > ../css/app.css
+````
+
 #### add template for index.js
 
 ````
 echo "import React from 'react'
 import { render } from 'react-dom'
 import { Provider } from 'react-redux'
+import { Router, hashHistory } from 'react-router'
+
+import routes from './routes'
 import App from './components/App'
 import configureStore from './configureStore'
 
@@ -155,11 +196,30 @@ window.store = store; // for debugging only
 
 render(
   <Provider store={store}>
-    <App />
+    <Router history={hashHistory}>
+      {routes}
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
 " > index.js
+````
+
+#### add template for routes.js
+
+````
+echo 'import React from "react"
+import { Route, IndexRoute } from "react-router"
+
+import App from "./components/App"
+
+
+const routes = (
+  <Route path="/" component={App}>
+  </Route>
+);
+
+export default routes;' > routes.js
 ````
 
 #### add template for app.js
@@ -167,6 +227,7 @@ render(
 ````
 echo "import React from 'react';
 import CurrentMessage from '../containers/CurrentMessage.js'
+require("../../css/app.css");
 
 const App = (props) => {
   return(
@@ -230,7 +291,7 @@ export default CurrentMessage;
 #### add template for configureStore.js
 
 ````
-echo 'import { createStore, applyMiddleware } from "redux"
+echo 'import { createStore, applyMiddleware, compose } from "redux"
 import thunkMiddleware from "redux-thunk"
 import createLogger from "redux-logger"
 import myReducer from "./reducers"
@@ -241,9 +302,12 @@ export default function configureStore(initialState) {
   return createStore(
     myReducer,
     initialState,
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
+    compose(
+      applyMiddleware(
+        thunkMiddleware,
+        loggerMiddleware
+      ),
+      window.devToolsExtension ? window.devToolsExtension() : f => f
     )
   )
 }' > ./configureStore.js
@@ -255,14 +319,11 @@ export default function configureStore(initialState) {
 echo "import { combineReducers } from 'redux'
 
 import reducer1 from './reducer1.js'
-import reducer2 from './reducer2.js'
+
 
 const myReducer = combineReducers({
-  reducer1: reducer1,
-  reducer2: reducer2
+  reducer1: reducer1
 });
-
-export default myReducer;
 
 export default myReducer" > reducers/index.js
 ````
@@ -281,21 +342,6 @@ const reducer1 = (state="Hello World", action) => {
 export default reducer1' > reducers/reducer1.js
 ````
 
-#### add template for reducer2
-
-````
-echo 'import K from "../constants/"
-
-const reducer2 = (state="", action) => {
-  switch(action.type){
-    default:
-      return state
-  }
-}
-export default reducer2' > reducers/reducer2.js
-````
-
-
 #### add template for main constants index
 
 ````
@@ -310,44 +356,19 @@ var appConstants = keyMirror({
 export default appConstants;' > constants/index.js
 ````
 
-#### adding template for a container
+#### add template for main actions index
 
 ````
-echo "import { connect } from 'react-redux'
+echo 'import axios from "axios";
 
-import MessageDisplayer from '../components/MessageDisplayer.js'
+import K from "../constants/"
 
-const mapStateToProps = (state, ownProps) => {
+export const selectTopic = () => {
   return {
-    message : state.message
+    type: K.SELECT_TOPIC
   }
-};
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-
-  }
-};
-
-const CurrentMessage = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(MessageDisplayer);
-
-export default CurrentMessage;" > containers/CurrentMessage.js
+};' > actions/index.js
 ````
-
-#### other improvments
-
-namespace all the actions
-a constants file
-a sample component
-
-Add propTypes to FilterLink.js and give pull request
-
-#### Nuggets
-
-Design the shape of your state before implementation
 
 #### Update package.json
 
@@ -357,9 +378,65 @@ Design the shape of your state before implementation
     "start": "webpack-dev-server",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch"
-}
+},
 ````
 
-#### Async Flow
+## The End
 
-Keep the action which defines the UI interaction and the action which makes network request seperate. Keeping them as seperate actions is a better design as it allows us to fetch data regardless of user interaction as the app grows. e.g. pre-fetch, fetch with time, fetch with route change
+#### PS: Exporting the Store and then importing it
+
+````
+// store.js
+export default createStore(reducer)
+// actions.js
+import store from './store'
+````
+
+The main reason we dislike it is because it forces store to be a singleton. This makes it very hard to implement server rendering. On the server, you will want each request to have its own store, so that different users get different preloaded data.
+
+A singleton store also makes testing harder. You can no longer mock a store when testing action creators because they reference a specific real store exported from a specific module. You can’t even reset its state from outside.
+
+So while you technically can export a singleton store from a module, we discourage it. Don’t do this unless you are sure that your app will never add server rendering.
+
+#### On show page with a route, to make the routes work
+
+````
+componentDidMount() {
+    this.props.dispatch(
+      makeASandwichWithSecretSauce(this.props.forPerson)
+    );
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.forPerson !== this.props.forPerson) {
+      this.props.dispatch(
+        makeASandwichWithSecretSauce(nextProps.forPerson)
+      );
+    }
+  }
+````
+
+#### See also
+
+[Redux](https://github.com/reactjs/redux)
+[Redux Action](https://github.com/acdlite/redux-actions)
+[Redux Thunk](https://github.com/gaearon/redux-thunk)
+[Fetch](https://github.com/matthew-andrews/isomorphic-fetch)
+[Why I need Thunk's](http://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559)
+[React Context](https://facebook.github.io/react/docs/context.html) - Just for reference as redux uses it to pass the store around and we dont want to use gloabal like things.
+[Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) -
+[Components & Containers](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3ypxx95rh)
+[A Case for Flux](https://medium.com/swlh/the-case-for-flux-379b7d1982c6#.q40n6erpp)
+[Normalizr](https://github.com/paularmstrong/normalizr)
+[FSA](https://github.com/acdlite/flux-standard-action)
+[Directory of Redux Eco-System](https://github.com/markerikson/redux-ecosystem-links)
+[React Redux Reading List](https://github.com/markerikson/react-redux-links)
+[Redux Reading List](https://github.com/xgrommx/awesome-redux)
+[Immutable](http://facebook.github.io/immutable-js/)
+[Redux Cartoon Intro](https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6#.uiccs5hsm)
+[React Redux with Dan Abramov](https://www.youtube.com/watch?v=VJ38wSFbM3A)
+[React Reduc](https://github.com/reactjs/react-redux)
+[Redux Hot Reloading and Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs)
+[Redux Devtools](https://github.com/gaearon/redux-devtools)
+[https://github.com/mjackson/expect](https://github.com/mjackson/expect)
+[Undestanding Redux Middleware & Functional Programming Concepts](https://medium.com/@meagle/understanding-87566abcfb7a#.49buroeo5)

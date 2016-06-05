@@ -1,9 +1,13 @@
 import React from 'react';
 import CurrentMessage from '../containers/CurrentMessage.js'
+require('../../css/app.css');
 
 const App = (props) => {
   return(
-    <CurrentMessage />
+    <div>
+      <CurrentMessage />
+    </div>
+
   )
 }
 

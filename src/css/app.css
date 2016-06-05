@@ -1,0 +1,10 @@
+body {
+  padding-top: 50px;
+}
+.dashboard {
+  padding: 40px 15px;
+  text-align: center;
+}
+.container-fluid {
+  margin-top: 20px;
+}

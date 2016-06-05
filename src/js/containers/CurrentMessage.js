@@ -20,3 +20,4 @@ const CurrentMessage = connect(
 )(MessageDisplayer);
 
 export default CurrentMessage;
+
