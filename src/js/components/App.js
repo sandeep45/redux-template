@@ -1,11 +1,14 @@
 import React from 'react';
-import CurrentMessage from '../containers/CurrentMessage.js'
+import NavigationLinks from './NavigationLinks.js'
 require('../../css/app.css');
 
 const App = (props) => {
   return(
     <div>
-      <CurrentMessage />
+      <NavigationLinks />
+      <div className="container">
+        {props.children}
+      </div>
     </div>
 
   )

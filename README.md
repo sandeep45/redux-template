@@ -1,3 +1,4 @@
+npm install redux-api-middleware --save
 #### Init the project
 
 ````
@@ -10,13 +11,12 @@ touch README.md
 
 ````
 npm install --save react react-dom redux react-redux keymirror axios css-loader style-loader file-loader url-loader redux-thunk redux-logger react-router
-npm install --save-dev webpack babel webpack-dev-server babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-1 redux-devtools react-addons-test-utils mocha expect babel-register react-addons-test-utils redux-mock-store nock
+npm install --save-dev webpack babel webpack-dev-server babel-loader babel-preset-react babel-preset-es2015 babel-preset-stage-1 redux-devtools react-addons-test-utils mocha expect babel-register react-addons-test-utils redux-mock-store nock react-hot-loader
 ````
 
 #### Setup Webpack
 
 ````
-touch webpack.config.js
 echo 'module.exports = {
   devtool: "eval-source-map",
   entry: "./src/js/index.js",
@@ -37,16 +37,21 @@ echo 'module.exports = {
   module: {
     loaders: [
       {
+        test: /.css$/,
+        loader: "style!css"
+      },
+      {
+        test: /\.js$/,
+        exclude: /(node_modules|bower_components)/,
+        loader: "react-hot"
+      },
+      {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
         loader: "babel",
         query: {
           presets: ["es2015", "react", "stage-1"]
         }
-      },
-      {
-        test: /.css$/,
-        loader: "style!css"
       },
       {
         test: /\.(png|jpg)$/,
@@ -215,7 +220,8 @@ import App from "./components/App"
 
 
 const routes = (
-  <Route path="/" component={App}>
+  <Route path="/">
+    <IndexRoute  component={App} />
   </Route>
 );
 
@@ -227,7 +233,7 @@ export default routes;' > routes.js
 ````
 echo "import React from 'react';
 import CurrentMessage from '../containers/CurrentMessage.js'
-require("../../css/app.css");
+import appCss from '../../css/app.css'
 
 const App = (props) => {
   return(
@@ -375,10 +381,17 @@ export const selectTopic = () => {
 ````
 "private": true,
 "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --debug --inline --hot --progress --colors --display-reasons",
     "test": "mocha --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch"
 },
+````
+
+#### Turn it on
+
+````
+cd ../../
+npm start
 ````
 
 ## The End
@@ -418,25 +431,25 @@ componentDidMount() {
 
 #### See also
 
-[Redux](https://github.com/reactjs/redux)
-[Redux Action](https://github.com/acdlite/redux-actions)
-[Redux Thunk](https://github.com/gaearon/redux-thunk)
-[Fetch](https://github.com/matthew-andrews/isomorphic-fetch)
-[Why I need Thunk's](http://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559)
-[React Context](https://facebook.github.io/react/docs/context.html) - Just for reference as redux uses it to pass the store around and we dont want to use gloabal like things.
-[Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) -
-[Components & Containers](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3ypxx95rh)
-[A Case for Flux](https://medium.com/swlh/the-case-for-flux-379b7d1982c6#.q40n6erpp)
-[Normalizr](https://github.com/paularmstrong/normalizr)
-[FSA](https://github.com/acdlite/flux-standard-action)
-[Directory of Redux Eco-System](https://github.com/markerikson/redux-ecosystem-links)
-[React Redux Reading List](https://github.com/markerikson/react-redux-links)
-[Redux Reading List](https://github.com/xgrommx/awesome-redux)
-[Immutable](http://facebook.github.io/immutable-js/)
-[Redux Cartoon Intro](https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6#.uiccs5hsm)
-[React Redux with Dan Abramov](https://www.youtube.com/watch?v=VJ38wSFbM3A)
-[React Reduc](https://github.com/reactjs/react-redux)
-[Redux Hot Reloading and Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs)
-[Redux Devtools](https://github.com/gaearon/redux-devtools)
-[https://github.com/mjackson/expect](https://github.com/mjackson/expect)
+* [Redux](https://github.com/reactjs/redux)
+* [Redux Action](https://github.com/acdlite/redux-actions)
+* [Redux Thunk](https://github.com/gaearon/redux-thunk)
+* [Fetch](https://github.com/matthew-andrews/isomorphic-fetch)
+* [Why I need Thunk's](http://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout/35415559#35415559)
+* [React Context](https://facebook.github.io/react/docs/context.html) - Just for reference as redux uses it to pass the store around and we dont want to use gloabal like things.
+* [Thinking in React](https://facebook.github.io/react/docs/thinking-in-react.html) -
+* [Components & Containers](https://medium.com/@dan_abramov/smart-and-dumb-components-7ca2f9a7c7d0#.3ypxx95rh)
+* [A Case for Flux](https://medium.com/swlh/the-case-for-flux-379b7d1982c6#.q40n6erpp)
+* [Normalizr](https://github.com/paularmstrong/normalizr)
+* [FSA](https://github.com/acdlite/flux-standard-action)
+* [Directory of Redux Eco-System](https://github.com/markerikson/redux-ecosystem-links)
+* [React Redux Reading List](https://github.com/markerikson/react-redux-links)
+* [Redux Reading List](https://github.com/xgrommx/awesome-redux)
+* [Immutable](http://facebook.github.io/immutable-js/)
+* [Redux Cartoon Intro](https://code-cartoons.com/a-cartoon-intro-to-redux-3afb775501a6#.uiccs5hsm)
+* [React Redux with Dan Abramov](https://www.youtube.com/watch?v=VJ38wSFbM3A)
+* [React Reduc](https://github.com/reactjs/react-redux)
+* [Redux Hot Reloading and Time Travel](https://www.youtube.com/watch?v=xsSnOQynTHs)
+* [Redux Devtools](https://github.com/gaearon/redux-devtools)
+* [https://github.com/mjackson/expect](https://github.com/mjackson/expect)
 [Undestanding Redux Middleware & Functional Programming Concepts](https://medium.com/@meagle/understanding-87566abcfb7a#.49buroeo5)

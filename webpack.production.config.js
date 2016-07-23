@@ -1,29 +1,17 @@
 var webpack = require("webpack");
 
-var devFlagPlugin = new webpack.DefinePlugin({
-  __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false')),
-  __X__: JSON.stringify(JSON.parse(process.env.X || 'false'))
-});
-
 module.exports = {
-  devtool: "eval-source-map",
+  devtool: "source-map",
   entry: "./src/js/index.js",
   output: {
     path: "./dist",
     filename: "bundle.js",
     publicPath: "/"
   },
-  devServer: {
-    inline: true,
-    contentBase: "./dist",
-    proxy: {
-      '/phone_number*': {
-        target: 'http://localhost:3000'
-      },
-    }
-  },
   plugins: [
-    devFlagPlugin
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'production')
+    })
   ],
   module: {
     loaders: [
@@ -46,7 +34,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg)$/,
-        loader: 'url-loader?limit=8192' // inline base64 URLs for <=8k images, direct URLs for the rest
+        loader: "url-loader?limit=8192" // inline base64 URLs for <=8k images, direct URLs for the rest
       },
       {
         test: require.resolve("jquery"),
@@ -60,10 +48,10 @@ module.exports = {
         test: require.resolve("underscore"),
         loader: "expose?_"
       },
-      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
-      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
-      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},
-      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=image/svg+xml'}
+      {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/font-woff"},
+      {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=application/octet-stream"},
+      {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: "file"},
+      {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: "url?limit=10000&mimetype=image/svg+xml"}
     ]
   }
 };

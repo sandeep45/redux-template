@@ -1,9 +1,2 @@
-import axios from "axios";
-
-import K from "../constants/"
-
-export const selectTopic = () => {
-  return {
-    type: K.SELECT_TOPIC
-  }
-};
+export * from './phoneNumber'
+export * from './paginationLine'
