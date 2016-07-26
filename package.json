@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "start": "DEBUG=true X=true webpack-dev-server --debug --inline --hot --progress --colors --display-reasons",
-    "test": "mocha  --full-trace --growl --colors --bail --compilers js:babel-register --recursive --debug",
+    "test": "mocha  --full-trace --growl --colors --bail --compilers js:babel-register --recursive",
     "test:watch": "npm test -- --watch",
     "dev_compile": "NODE_ENV=development webpack --progress --colors --display-error-details --display-chunks --display-reasons",
     "prod_compile": "NODE_ENV=production webpack -p -d --progress --colors --display-error-details --display-chunks --display-reasons --config webpack.production.config.js",

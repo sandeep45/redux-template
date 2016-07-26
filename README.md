@@ -1,7 +1,3 @@
-CSS
-Tests
-standards
-
 A redux project to serve as a template to start building a redux-react app.
 
 ````
@@ -10,15 +6,31 @@ npm install
 npm start
 ````
 
-Dependecy: A backend API server which responds to `http://localhost:3000/phone_numbers.json`
+### It includes
 
-This template includes an index page with `pagination`, `isFetching` & `error` as shared components.
+A Phone Numbers index page with `pagination`, `isFetching` & `error` as shared components.
 
-It has a `entities` & `paginate` as a generic reducer which will work for all models.
+Authentication is built in. This includes Components, Actions & Reducers.
 
-There is use of thunks & routes as well.
+`entities` & `paginate` as a generic reducer which will work for all models.
 
-The tests are setup in `mocha` and asserted via `expect.js`
+thunks, routes, constants, normalizr are used & setup
 
-TODO:
-add, show, update & delete of phone numbers
+Tests are setup in `mocha` and asserted via `expect.js`
+
+WebUtil is setup with `axios`.
+
+### Dependecies:
+
+A backend API server which responds to:
+
+- `http://localhost:3000/phone_numbers.json`
+- `http://localhost:3000/users/sign_in`
+- `http://localhost:3000/users`
+- `http://localhost:3000/users/password`
+
+###TODO:
+
+- add, show, update & delete of phone numbers
+- Add debugging to Tests
+- Add standards project

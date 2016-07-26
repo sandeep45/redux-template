@@ -70,8 +70,8 @@ describe("loginUser", () => {
     return result.
       then(
         (resp) => {
-          expect(store.getActions()[1].payload.authentication_token).toExist();
-          expect(store.getActions()[1].payload.email).toExist();
+          expect(store.getActions()[1].payload.entities["users"][1].authentication_token).toExist();
+          expect(store.getActions()[1].payload.entities["users"][1].email).toExist();
         }
       )
   });
