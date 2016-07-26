@@ -2,7 +2,9 @@ import React, { PropTypes, Component } from 'react'
 
 import {Link} from 'react-router';
 
-const NavigationLinks = (props) => {
+import Logout from '../containers/auth/Logout.js'
+
+const NavigationLinks = ({doLogout}) => {
 
   return(
     <nav className="navbar navbar-default navbar-fixed-top">
@@ -22,9 +24,7 @@ const NavigationLinks = (props) => {
             <li> <Link to="/paginated_phone_numbers">Phone Book</Link> </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
-           <li>
-
-            </li>
+          <li> <Logout /> </li>
           </ul>
 
         </div>
@@ -33,7 +33,8 @@ const NavigationLinks = (props) => {
   )
 }
 
-NavigationLinks.propTypes = { };
+NavigationLinks.propTypes = {
+};
 
 export default NavigationLinks
 

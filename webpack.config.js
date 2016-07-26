@@ -20,6 +20,9 @@ module.exports = {
       '/phone_number*': {
         target: 'http://localhost:3000'
       },
+      '/user*': {
+        target: 'http://localhost:3000'
+      }
     }
   },
   plugins: [

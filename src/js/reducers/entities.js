@@ -3,7 +3,8 @@ import K from "../constants/"
 
 const initialSate = {
   messages: {},
-  phoneNumbers: {}
+  phoneNumbers: {},
+  users: {}
 };
 
 const entities = (state=initialSate, action) => {
