@@ -1,3 +1,7 @@
+CSS
+Tests
+standards
+
 A redux project to serve as a template to start building a redux-react app.
 
 ````

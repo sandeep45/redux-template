@@ -4,6 +4,8 @@ import K from "../constants/"
 import * as MySchema from '../config/MySchema'
 import {normalize} from 'normalizr'
 import {addAuthTokenInAjax, removeAuthTokenInAjax} from '../config/helpers.js'
+import { hashHistory } from 'react-router';
+
 
 export const loginUser = (email, password) => (dispatch, getState) => {
 
@@ -27,6 +29,8 @@ export const loginUser = (email, password) => (dispatch, getState) => {
       });
     }
   );
+
+  // hashHistory.push("/forgot_password")
 
 }
 

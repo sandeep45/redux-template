@@ -6,6 +6,7 @@ require("bootstrap/dist/css/bootstrap-theme.css");
 require("bootstrap");
 
 require("../css/app.css");
+require('../css/login.css');
 
 import React from 'react'
 import { render } from 'react-dom'

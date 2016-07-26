@@ -1,13 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 import {Link} from 'react-router';
 
-require("jquery");
-
-require("bootstrap/dist/css/bootstrap.css");
-require("bootstrap/dist/css/bootstrap-theme.css");
-require("bootstrap");
-require('../../../css/login.css');
-
 import ProgressBar from '../ProgressBar.js'
 
 export default class ForgotPasswordForm extends Component {

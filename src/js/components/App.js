@@ -1,6 +1,5 @@
 import React from 'react';
 import NavigationLinks from './NavigationLinks.js'
-require('../../css/app.css');
 
 const App = (props) => {
   return(
