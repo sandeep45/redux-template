@@ -10,22 +10,24 @@ import ForgotPassword from "../containers/auth/ForgotPassword"
 import HelloWorld from "../components/HelloWorld"
 import PageNotFound from "../components/PageNotFound"
 import PaginatedPhoneNumbers from "../containers/PaginatedPhoneNumbers"
+import CsvUploader from "../containers/CsvUploader"
 
 
 const routes = (store) => {
 
   function requireAuth(nextState, replace) {
-    if (!getAttributeOfAuthenticatedUser(store.getState(), "authentication_token")){
-      replace({
-        pathname: '/login',
-      })
-    }
+    // if (!getAttributeOfAuthenticatedUser(store.getState(), "authentication_token")){
+    //   replace({
+    //     pathname: '/login',
+    //   })
+    // }
   }
 
   return (
       <div>
         <Route path="/" component={App} onEnter={requireAuth}>
           <IndexRoute component={HelloWorld} />
+          <Route path="/csv_uploader" component={CsvUploader} />
           <Route path="/paginated_phone_numbers" component={PaginatedPhoneNumbers} />
         </Route>
         <Route path="/login" component={Login} />

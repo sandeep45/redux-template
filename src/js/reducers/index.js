@@ -6,6 +6,7 @@ import entities from './entities.js'
 import paginate, * as fromPaginate from './paginate.js'
 import paginationLine from './paginationLine.js'
 import authentication, * as fromAuthentication from './authentication.js'
+import csvData, * as fromCsvData from './csvData.js'
 
 const rootReducer = (state, action) => {
   if (action.type === 'DO_LOGOUT') {
@@ -18,7 +19,8 @@ const myReducer = combineReducers({
   entities: entities,
   paginate: paginate,
   paginationLine: paginationLine,
-  authentication: authentication
+  authentication: authentication,
+  csvData
 });
 
 export default rootReducer;
@@ -58,3 +60,10 @@ export const getAttributeOfAuthenticatedUser = (state, attr) => {
   const userAttrValue = state.entities.users[id][attr];
   return userAttrValue;
 }
+
+export const getCsvDataHeaderFields = (state) => fromCsvData.getHeaderFields(state.csvData);
+export const getCsvDataAllDataRows = (state) => fromCsvData.getAllDataRows(state.csvData);
+export const getCsvDatatParsingErrors = (state) => fromCsvData.getParsingErrors(state.csvData);
+export const getCsvDataErrorMessage = (state) => fromCsvData.getErrorMessage(state.csvData);
+export const getCsvDataIsFetching = (state) => fromCsvData.getIsFetching(state.csvData);
+export const getCsvDataFileName = (state) => fromCsvData.getFileName(state.csvData);

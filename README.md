@@ -12,6 +12,8 @@ A Phone Numbers index page with `pagination`, `isFetching` & `error` as shared c
 
 Authentication is built in. This includes Components, Actions & Reducers.
 
+Process & Analyze an uploaded CSV file.
+
 `entities` & `paginate` as a generic reducer which will work for all models.
 
 thunks, routes, constants, normalizr are used & setup
@@ -31,6 +33,14 @@ A backend API server which responds to:
 
 ###TODO:
 
+- manipuate page onClick
 - add, show, update & delete of phone numbers
+- show uploaded files images
 - Add debugging to Tests
 - Add standards project
+- Add Uploading file
+- Add parsing of content
+- Add Charts
+- Sorting in tables
+- wizard to go forward and back
+- html structure refactor of auth and refactor routes

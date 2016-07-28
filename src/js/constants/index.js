@@ -12,6 +12,7 @@ var appConstants = keyMirror({
   DO_SIGNUP: null,
   DO_FORGOT_PASSWORD: null,
 
+  UPDATE_CSV_DATA: null,
 });
 
 export default appConstants;

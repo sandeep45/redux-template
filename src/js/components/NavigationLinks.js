@@ -22,6 +22,7 @@ const NavigationLinks = ({doLogout}) => {
           <ul className="nav navbar-nav">
             <li> <Link to="/">Home</Link> </li>
             <li> <Link to="/paginated_phone_numbers">Phone Book</Link> </li>
+            <li> <Link to="/csv_uploader">Upload CSV</Link> </li>
           </ul>
           <ul className="nav navbar-nav navbar-right">
           <li> <Logout /> </li>
