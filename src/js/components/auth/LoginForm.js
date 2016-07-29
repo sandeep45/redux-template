@@ -15,25 +15,23 @@ export default class LoginForm extends Component {
   render(){
     const {errorMessage, isFetching} = this.props;
     return(
-       <div className="container">
-        <form className="form-signin" onSubmit={this._onSubmit}>
-          <h2 className="form-signin-heading">Please sign in</h2>
-          <p className="text-danger">{errorMessage}</p>
-          <label for="inputEmail" className="sr-only">Email address</label>
-          <input type="email" id="inputEmail" className="form-control first"
-            placeholder="Email address" required autofocus
-            ref={(c) => this._username = c} />
-          <label for="inputPassword" className="sr-only">Password</label>
-          <input type="password" id="inputPassword" className="form-control last"
-            placeholder="Password" required
-            ref={(c) => this._password = c} />
-          {isFetching ? <ProgressBar /> : <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>}
-          <div className="authLinks">
-            <Link to="/signup">Sign Up</Link><br/>
-            <Link to="/forgot_password">Forgot Your Password?</Link>
-          </div>
-        </form>
-    </div>
+      <form className="form-signin" onSubmit={this._onSubmit}>
+        <h2 className="form-signin-heading">Please sign in</h2>
+        <p className="text-danger">{errorMessage}</p>
+        <label for="inputEmail" className="sr-only">Email address</label>
+        <input type="email" id="inputEmail" className="form-control first"
+          placeholder="Email address" required autofocus
+          ref={(c) => this._username = c} />
+        <label for="inputPassword" className="sr-only">Password</label>
+        <input type="password" id="inputPassword" className="form-control last"
+          placeholder="Password" required
+          ref={(c) => this._password = c} />
+        {isFetching ? <ProgressBar /> : <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>}
+        <div className="authLinks">
+          <Link to="/auth/signup">Sign Up</Link><br/>
+          <Link to="/auth/forgot_password">Forgot Your Password?</Link>
+        </div>
+      </form>
     );
   };
   _onSubmit = (evt) => {

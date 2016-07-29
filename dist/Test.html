@@ -1,60 +1,8 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title></title>
-  <script type="text/javascript" src="http://papaparse.com/resources/js/papaparse.js"></script>
-  <script>
-    function handleFiles(files){
-      var file = files[0];
-      var size = file.size;
-      var reader = new FileReader();
-      reader.onload = function(e) {
-        // console.log(e.target.result);
-        csvString = e.target.result;
-        var config = {
-          header: true,
-          dynamicTyping: true,
-          preview: 10,
-          skipEmptyLines: true,
-          complete: function(result, file){
-            console.log('complete', result);
-          },
-          error: function(error, file){
-            console.log('error', error);
-          }
-        };
-        var results = Papa.parse(csvString, config);
-        console.log(results);
-      }
-      reader.readAsText(file);
-    }
-  </script>
-
-</head>
 <body>
-
-<h1>Test.html</h1>
-
-<p>
-  <input type="file" id="fileElem" style="display:none" onchange="handleFiles(this.files)">
-  <a href="#" id="fileSelect">Select some files</a>
-</p>
-
-<p>Name: <span id="fileName">0</span></p>
-<p>Type: <span id="fileType">0</span></p>
-
-<script>
-var fileSelect = document.getElementById("fileSelect"),
-  fileElem = document.getElementById("fileElem");
-fileSelect.addEventListener("click", function (e) {
-  if (fileElem) {
-    fileElem.click();
-  }
-  e.preventDefault(); // prevent navigation to "#"
-}, false);
-</script>
-
-
-
+<form method="post">
+  <input type="text" name="email" x-autocompletetype="email" />
+</form>
 </body>
 </html>

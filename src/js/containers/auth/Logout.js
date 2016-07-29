@@ -27,7 +27,7 @@ class Logout extends Component {
   render(){
     return (
       <div style={{paddingTop:15}}>
-        Logged in as {this.props.email}, <Link to="/login" onClick={this._logoutClicked}>Logout</Link>
+        Logged in as {this.props.email}, <Link to="/auth/login" onClick={this._logoutClicked}>Logout</Link>
       </div>
     );
   };

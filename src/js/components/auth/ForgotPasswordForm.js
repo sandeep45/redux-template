@@ -10,22 +10,20 @@ export default class ForgotPasswordForm extends Component {
   render(){
     const {errorMessage, isFetching, forgotPasswordCompleted} = this.props;
     return(
-       <div className="container">
-        <form className="form-signin" onSubmit={this._onSubmit}>
-          <h2 className="form-signin-heading">Forgot yourr password?</h2>
-          <p className="text-danger">{errorMessage}</p>
-          {forgotPasswordCompleted ? <p className="text-primary">Sent. Check your email.</p> : "" }
-          <label for="inputEmail" className="sr-only">Email address</label>
-          <input type="email" id="inputEmail" className="form-control single"
-            placeholder="Email address" required autofocus
-            ref={(c) => this._username = c} />
-          {isFetching ? <ProgressBar /> : <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>}
-          <div className="authLinks">
-            <Link to="/login">Sign In</Link><br/>
-            <Link to="/signup">Sign Up</Link><br/>
-          </div>
-        </form>
-    </div>
+      <form className="form-signin" onSubmit={this._onSubmit}>
+        <h2 className="form-signin-heading">Forgot yourr password?</h2>
+        <p className="text-danger">{errorMessage}</p>
+        {forgotPasswordCompleted ? <p className="text-primary">Sent. Check your email.</p> : "" }
+        <label for="inputEmail" className="sr-only">Email address</label>
+        <input type="email" id="inputEmail" className="form-control single"
+          placeholder="Email address" required autofocus
+          ref={(c) => this._username = c} />
+        {isFetching ? <ProgressBar /> : <button className="btn btn-lg btn-primary btn-block" type="submit">Submit</button>}
+        <div className="authLinks">
+          <Link to="/auth/login">Sign In</Link><br/>
+          <Link to="/auth/signup">Sign Up</Link><br/>
+        </div>
+      </form>
     );
   };
   _onSubmit = (evt) => {

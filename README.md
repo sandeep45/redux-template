@@ -24,6 +24,8 @@ Tests are setup in `mocha` and asserted via `expect.js`
 
 WebUtil is setup with `axios`.
 
+Wizard style Bottom Nav to go back & forward between pages
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -35,7 +37,6 @@ A backend API server which responds to:
 
 ###TODO:
 
-- wizard (sub menu) in bottom bar to go forward and back
 - Add Uploading file
 - show uploaded files images (detect size)
 - tabs on a panel to change table data
@@ -45,4 +46,4 @@ A backend API server which responds to:
 - Add standards project
 - Add Charts
 - Sorting in tables
-- html structure refactor of auth and refactor routes to be under Auth with its own Template Page
+- Use Flexbox to center the auth page
