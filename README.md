@@ -33,14 +33,15 @@ A backend API server which responds to:
 
 ###TODO:
 
+- make dropzone a parent element
+- Add Uploading file
+- show uploaded files images (detect size)
+- tabs on a panel to change table data
+- wizard (sub menu) to go forward and back
 - manipuate page onClick
 - add, show, update & delete of phone numbers
-- show uploaded files images
 - Add debugging to Tests
 - Add standards project
-- Add Uploading file
-- Add parsing of content
 - Add Charts
 - Sorting in tables
-- wizard to go forward and back
-- html structure refactor of auth and refactor routes
+- html structure refactor of auth and refactor routes to be under Auth with its own Template Page

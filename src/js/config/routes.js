@@ -11,6 +11,7 @@ import HelloWorld from "../components/HelloWorld"
 import PageNotFound from "../components/PageNotFound"
 import PaginatedPhoneNumbers from "../containers/PaginatedPhoneNumbers"
 import CsvUploader from "../containers/CsvUploader"
+import ImageUploader from "../containers/ImageUploader"
 
 
 const routes = (store) => {
@@ -28,6 +29,7 @@ const routes = (store) => {
         <Route path="/" component={App} onEnter={requireAuth}>
           <IndexRoute component={HelloWorld} />
           <Route path="/csv_uploader" component={CsvUploader} />
+          <Route path="/image_uploader" component={ImageUploader} />
           <Route path="/paginated_phone_numbers" component={PaginatedPhoneNumbers} />
         </Route>
         <Route path="/login" component={Login} />

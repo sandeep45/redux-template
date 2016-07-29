@@ -7,6 +7,7 @@ import paginate, * as fromPaginate from './paginate.js'
 import paginationLine from './paginationLine.js'
 import authentication, * as fromAuthentication from './authentication.js'
 import csvData, * as fromCsvData from './csvData.js'
+import imageFile, * as fromImageFile from './imageFile.js'
 
 const rootReducer = (state, action) => {
   if (action.type === 'DO_LOGOUT') {
@@ -20,7 +21,8 @@ const myReducer = combineReducers({
   paginate: paginate,
   paginationLine: paginationLine,
   authentication: authentication,
-  csvData
+  csvData,
+  imageFile,
 });
 
 export default rootReducer;
@@ -67,3 +69,11 @@ export const getCsvDatatParsingErrors = (state) => fromCsvData.getParsingErrors(
 export const getCsvDataErrorMessage = (state) => fromCsvData.getErrorMessage(state.csvData);
 export const getCsvDataIsFetching = (state) => fromCsvData.getIsFetching(state.csvData);
 export const getCsvDataFileName = (state) => fromCsvData.getFileName(state.csvData);
+
+export const getImageProcessorStatus = (state) => fromImageFile.getImageProcessorStatus(state.imageFile)
+export const getImageProcessorError = (state) => fromImageFile.getImageProcessorError(state.imageFile)
+
+
+export const getImageNameBySize = (state, size) => fromImageFile.getImageNameBySize(state.imageFile, size)
+export const getImageUrlBySize = (state, size) => fromImageFile.getImageUrlBySize(state.imageFile, size)
+export const getImagesBySize = (state) => fromImageFile.getImagesBySize(state.imageFile)

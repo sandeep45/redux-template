@@ -24,7 +24,7 @@ export const updateCsvData = file => dispatch => {
     });
   }
 
-  if(file.type && !file.type.startsWith("text")){
+  if(file.type && !file.type.startsWith("text/")){
     return dispatch({
       type: K.UPDATE_CSV_DATA,
       payload: new Error(`Only Text based file formats are supported. You uploaded: ${file.type}`),
