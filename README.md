@@ -14,6 +14,8 @@ Authentication is built in. This includes Components, Actions & Reducers.
 
 Process & Analyze an uploaded CSV file.
 
+A Generic component called `DropableZone`. It can be used as a parent container to handle dropping of files.
+
 `entities` & `paginate` as a generic reducer which will work for all models.
 
 thunks, routes, constants, normalizr are used & setup
@@ -33,11 +35,10 @@ A backend API server which responds to:
 
 ###TODO:
 
-- make dropzone a parent element
+- wizard (sub menu) in bottom bar to go forward and back
 - Add Uploading file
 - show uploaded files images (detect size)
 - tabs on a panel to change table data
-- wizard (sub menu) to go forward and back
 - manipuate page onClick
 - add, show, update & delete of phone numbers
 - Add debugging to Tests
