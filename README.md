@@ -42,14 +42,12 @@ A backend API server which responds to:
 ###TODO:
 
 - Add Uploading file
-- show uploaded files images (detect size)
-- manipuate page onClick - auth project, tab project
+- manipuate page onClick - auth project
 - add, show, update & delete of phone numbers
 - Add debugging to Tests
 - Add standards project
 - Sorting in tables
 - Use Flexbox to center the auth page
-- form submit can get value by `event.target.elements[0].value`
 - IDE - nuclide
 - Flow, watchman
 - Animation - https://facebook.github.io/react/docs/animation.html

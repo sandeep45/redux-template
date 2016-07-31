@@ -19,11 +19,11 @@ export default class LoginForm extends Component {
         <h2 className="form-signin-heading">Please sign in</h2>
         <p className="text-danger">{errorMessage}</p>
         <label for="inputEmail" className="sr-only">Email address</label>
-        <input type="email" id="inputEmail" className="form-control first"
+        <input type="email" className="form-control first" name="email"
           placeholder="Email address" required autofocus
           ref={(c) => this._username = c} />
         <label for="inputPassword" className="sr-only">Password</label>
-        <input type="password" id="inputPassword" className="form-control last"
+        <input type="password" className="form-control last" name="password"
           placeholder="Password" required
           ref={(c) => this._password = c} />
         {isFetching ? <ProgressBar /> : <button className="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>}
@@ -37,6 +37,9 @@ export default class LoginForm extends Component {
   _onSubmit = (evt) => {
     evt.preventDefault();
     console.log("login has been clicked: ", this._username.value, this._password.value);
+    console.log("login has been clicked: ", evt.target.elements.namedItem("email").value,
+      evt.target.elements.namedItem("password").value);
+
     if(this._username.value && this._password.value){
       this.props.doLogin(this._username.value, this._password.value);
     }
