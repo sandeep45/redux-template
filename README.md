@@ -26,6 +26,8 @@ WebUtil is setup with `axios`.
 
 Wizard style Bottom Nav to go back & forward between pages
 
+HighChart Component to render charts and update from state
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -44,6 +46,9 @@ A backend API server which responds to:
 - add, show, update & delete of phone numbers
 - Add debugging to Tests
 - Add standards project
-- Add Charts
 - Sorting in tables
 - Use Flexbox to center the auth page
+- form submit can get value by `event.target.elements[0].value`
+- IDE - nuclide
+- Flow, watchman
+- make width & height customizable in highChart component

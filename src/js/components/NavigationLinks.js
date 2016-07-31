@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react'
 
-import {Link} from 'react-router';
+import NavLink from './generic/NavLink';
 
 import Logout from '../containers/auth/Logout.js'
 
@@ -23,10 +23,11 @@ class NavigationLinks extends Component{
           </div>
           <div id="navbar" className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li> <Link to="/">Home</Link> </li>
-              <li> <Link to="/paginated_phone_numbers">Phone Book</Link> </li>
-              <li> <Link to="/bottom_nav/csv_uploader">Upload CSV</Link> </li>
-              <li> <Link to="/bottom_nav/image_uploader">Image Uploader</Link> </li>
+              <li> <NavLink to="/" onlyActiveOnIndex={true}>Home</NavLink> </li>
+              <li> <NavLink to="/paginated_phone_numbers">Phone Book</NavLink> </li>
+              <li> <NavLink to="/csv_uploader">Upload CSV</NavLink> </li>
+              <li> <NavLink to="/image_uploader">Image Uploader</NavLink> </li>
+              <li> <NavLink to="/my_chart">MyChart</NavLink> </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
             <li> <Logout /> </li>

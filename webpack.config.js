@@ -7,10 +7,14 @@ var devFlagPlugin = new webpack.DefinePlugin({
 
 module.exports = {
   devtool: "eval-source-map",
-  entry: "./src/js/index.js",
+  entry: "",
+  entry: {
+    test: "./src/js/test.js",
+    app: "./src/js/index.js"
+  },
   output: {
     path: "./dist",
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     publicPath: "/"
   },
   devServer: {
@@ -59,10 +63,10 @@ module.exports = {
         test: require.resolve("jquery"),
         loader: "expose?jQuery"
       },
-      {
-        test: require.resolve("underscore"),
-        loader: "expose?_"
-      },
+      // {
+      //   test: require.resolve("underscore"),
+      //   loader: "expose?_"
+      // },
       {test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/font-woff'},
       {test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/, loader: 'url?limit=10000&mimetype=application/octet-stream'},
       {test: /\.eot(\?v=\d+\.\d+\.\d+)?$/, loader: 'file'},

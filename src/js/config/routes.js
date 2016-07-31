@@ -5,6 +5,7 @@ import {getAttributeOfAuthenticatedUser} from '../reducers/'
 
 import App from "../components/App"
 import BottomNav from "../components/BottomNav"
+import CsvStatChart from "../containers/CsvStatChart"
 import Auth from "../components/auth/Auth"
 import Login from "../containers/auth/Login"
 import SignUp from "../containers/auth/SignUp"
@@ -34,10 +35,12 @@ const routes = (store) => {
 
           <Route path="paginated_phone_numbers" component={PaginatedPhoneNumbers} />
 
-          <Route path="bottom_nav" component={BottomNav} >
+          <Route component={BottomNav} >
             <Route path="csv_uploader" component={CsvUploader} />
             <Route path="image_uploader" component={ImageUploader} />
           </Route>
+
+          <Route path="my_chart" component={CsvStatChart} />
         </Route>
 
         <Route path="/auth" component={Auth}>

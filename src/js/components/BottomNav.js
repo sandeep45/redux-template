@@ -1,6 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 
 import {Link} from 'react-router';
+import NavLink from './generic/NavLink';
+
 
 class BottomNav extends Component{
 
@@ -23,9 +25,9 @@ class BottomNav extends Component{
               </ul>
             </div>
             <div className="col-md-4">
-               <ul className="nav navbar-nav">
-                <li> <Link to="/bottom_nav/csv_uploader">Upload CSV</Link> </li>
-                <li> <Link to="/bottom_nav/image_uploader">Image Uploader</Link> </li>
+              <ul className="nav navbar-nav">
+                <li> <NavLink to="/csv_uploader">Upload CSV</NavLink> </li>
+                <li> <NavLink to="/image_uploader">Image Uploader</NavLink> </li>
               </ul>
             </div>
             <div className="col-md-4">
@@ -43,10 +45,10 @@ class BottomNav extends Component{
   _getBackUrl = () => {
     const pathname = this.props.location.pathname;
     switch(pathname){
-      case "/bottom_nav/csv_uploader":
+      case "/csv_uploader":
         return null;
-      case "/bottom_nav/image_uploader":
-        return "/bottom_nav/csv_uploader"
+      case "/image_uploader":
+        return "/csv_uploader"
       default:
         return null;
     }
@@ -55,9 +57,9 @@ class BottomNav extends Component{
   _getForwardUrl = () => {
     const pathname = this.props.location.pathname;
     switch(pathname){
-      case "/bottom_nav/csv_uploader":
-        return "/bottom_nav/image_uploader";
-      case "/bottom_nav/image_uploader":
+      case "/csv_uploader":
+        return "/image_uploader";
+      case "/image_uploader":
         return null;
       default:
         return null;

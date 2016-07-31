@@ -9,6 +9,7 @@ import CsvHeadersTable from '../components/csvUpload/CsvHeadersTable'
 import CsvDataTable from '../components/csvUpload/CsvDataTable'
 import CsvHeaderWithSampleDataTable from '../components/csvUpload/CsvHeaderWithSampleDataTable'
 import CsvStats from '../components/csvUpload/CsvStats'
+import CsvStatChart from './CsvStatChart'
 
 
 import {getCsvDataHeaderFields, getCsvDataAllDataRows,
@@ -49,6 +50,7 @@ class CsvUploader extends Component {
         <CsvStats {...this.props} />
         <CsvHeadersTable {...this.props} />
         <CsvHeaderWithSampleDataTable {...this.props} />
+        <CsvStatChart />
       </div>
     );
   }
