@@ -66,7 +66,7 @@ class MyHighChart extends Component{
     const {options, modules, ...others} = this.props;
     return(
       <div>
-        <div style={{width:"100%", height:"400px"}}
+        <div
           ref={c => this._myChart = c}
           {...others}
         >

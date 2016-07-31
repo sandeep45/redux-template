@@ -1,7 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 
 import {Link} from 'react-router';
-import NavLink from './generic/NavLink';
+import NavLink from '../generic/NavLink';
 
 
 class BottomNav extends Component{

@@ -4,7 +4,8 @@ import { Route, IndexRoute } from "react-router"
 import {getAttributeOfAuthenticatedUser} from '../reducers/'
 
 import App from "../components/App"
-import BottomNav from "../components/BottomNav"
+import BottomNav from "../components/nav/BottomNav"
+import TabNav from "../components/nav/TabNav"
 import CsvStatChart from "../containers/CsvStatChart"
 import Auth from "../components/auth/Auth"
 import Login from "../containers/auth/Login"
@@ -38,6 +39,12 @@ const routes = (store) => {
           <Route component={BottomNav} >
             <Route path="csv_uploader" component={CsvUploader} />
             <Route path="image_uploader" component={ImageUploader} />
+          </Route>
+
+          <Route path="tab_nav" component={TabNav}>
+            <IndexRoute component={HelloWorld} />
+            <Route path="paginated_phone_numbers" component={PaginatedPhoneNumbers} />
+            <Route path="my_chart" component={CsvStatChart} />
           </Route>
 
           <Route path="my_chart" component={CsvStatChart} />

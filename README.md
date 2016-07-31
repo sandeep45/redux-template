@@ -28,6 +28,8 @@ Wizard style Bottom Nav to go back & forward between pages
 
 HighChart Component to render charts and update from state
 
+Added Tab based Navigation. It uses `withRouter`
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -41,8 +43,7 @@ A backend API server which responds to:
 
 - Add Uploading file
 - show uploaded files images (detect size)
-- tabs on a panel to change table data
-- manipuate page onClick
+- manipuate page onClick - auth project, tab project
 - add, show, update & delete of phone numbers
 - Add debugging to Tests
 - Add standards project
@@ -51,4 +52,4 @@ A backend API server which responds to:
 - form submit can get value by `event.target.elements[0].value`
 - IDE - nuclide
 - Flow, watchman
-- make width & height customizable in highChart component
+- Animation - https://facebook.github.io/react/docs/animation.html

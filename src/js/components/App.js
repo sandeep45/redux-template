@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import NavigationLinks from './NavigationLinks.js'
+import NavigationLinks from './nav/NavigationLinks.js'
 import DropableZone from './generic/DropableZone'
 import {Link} from 'react-router';
 import Logout from '../containers/auth/Logout.js'

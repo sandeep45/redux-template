@@ -1,8 +1,8 @@
 import React, { PropTypes, Component } from 'react'
 
-import NavLink from './generic/NavLink';
+import NavLink from '../generic/NavLink';
 
-import Logout from '../containers/auth/Logout.js'
+import Logout from '../../containers/auth/Logout.js'
 
 class NavigationLinks extends Component{
   constructor(props){
@@ -28,6 +28,7 @@ class NavigationLinks extends Component{
               <li> <NavLink to="/csv_uploader">Upload CSV</NavLink> </li>
               <li> <NavLink to="/image_uploader">Image Uploader</NavLink> </li>
               <li> <NavLink to="/my_chart">MyChart</NavLink> </li>
+              <li> <NavLink to="/tab_nav">TabNav</NavLink> </li>
             </ul>
             <ul className="nav navbar-nav navbar-right">
             <li> <Logout /> </li>
