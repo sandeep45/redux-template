@@ -2,6 +2,18 @@ import axios from 'axios';
 import {normalize,arrayOf} from 'normalizr'
 import * as MySchema from './MySchema'
 
+export const uploadImage = (file) => {
+  var formData = new FormData();
+  formData.append("ad[picture]", file);
+
+  return axios.post(`/users/1/ads`, formData , {
+      headers: {
+        Accept: "application/json"
+      }
+    }
+  );
+
+}
 
 export const getAllPhoneNumbers2 = (pageNumber) => {
   return axios.get(`/phone_numbers.json`, {

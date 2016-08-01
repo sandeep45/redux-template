@@ -16,4 +16,5 @@ export const getImageProcessorError = (state) => fromImageProcessor.getImageProc
 
 export const getImageNameBySize = (state, size) => fromImagesBySize.getImageNameBySize(state.imagesBySize, size)
 export const getImageUrlBySize = (state, size) => fromImagesBySize.getImageUrlBySize(state.imagesBySize, size)
+export const getImageErrorMessageBySize = (state, size) => fromImagesBySize.getImageErrorMessageBySize(state.imagesBySize, size)
 export const getImagesBySize = (state) => state.imagesBySize

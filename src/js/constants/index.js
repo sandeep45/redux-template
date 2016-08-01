@@ -15,7 +15,7 @@ var appConstants = keyMirror({
   UPDATE_CSV_DATA: null,
 
   UPDATE_IMAGE_FILE: null,
-  UPLOADING_IMAGE: null,
+  PROCESSING_IMAGE: null,
 });
 
 export default appConstants;

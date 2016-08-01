@@ -5,17 +5,24 @@ import { combineReducers } from 'redux'
 const createImageObjectReducerPerSize = (size) => {
   return (state = {
     fileName: null,
-    url: null
+    url: null,
+    errorMessage: null
   }, action) => {
     switch(action.type){
       case K.UPDATE_IMAGE_FILE:
         if (!action.meta || !action.meta.size || action.meta.size !== size) {
           return state;
-        }else if (action.payload){
+        }else if(action.error === true){
+          return {
+            ...state,
+            errorMessage: action.payload.message
+          }
+        }else if(action.payload && !action.error){
           return {
             fileName: action.payload.fileName,
-            url: action.payload.url
-          };
+            url: action.payload.url,
+            errorMessage: null
+          }
         }else{
           return state;
         }
@@ -36,3 +43,4 @@ export default imagesBySize;
 
 export const getImageNameBySize = (state, size) => state[size].fileName
 export const getImageUrlBySize = (state, size) => state[size].url
+export const getImageErrorMessageBySize = (state, size) => state[size].errorMessage

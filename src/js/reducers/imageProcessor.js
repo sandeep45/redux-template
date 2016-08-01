@@ -6,7 +6,7 @@ const imageProcessor = (state={
 }, action) => {
 
   switch (action.type) {
-    case K.UPLOADING_IMAGE:
+    case K.PROCESSING_IMAGE:
       if(!action.payload && !action.error){
         return {
           ...state,

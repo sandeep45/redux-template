@@ -1,4 +1,5 @@
 import K from "../constants/"
+import * as WebUtil from "../config/WebUtil.js"
 
 const acceptableImages = {
   [(728/90).toFixed(4)]: {
@@ -23,12 +24,12 @@ const imageName = (w,h) => `w${w}xh${h}`
 
 export const updateImageFile = file => dispatch => {
   dispatch({
-    type: K.UPLOADING_IMAGE
+    type: K.PROCESSING_IMAGE
   });
 
   if(!file){
     return dispatch({
-      type: K.UPLOADING_IMAGE,
+      type: K.PROCESSING_IMAGE,
       payload: new Error("File not provided"),
       error: true
     });
@@ -36,7 +37,7 @@ export const updateImageFile = file => dispatch => {
 
   if(file.size > 5000000){
     return dispatch({
-      type: K.UPLOADING_IMAGE,
+      type: K.PROCESSING_IMAGE,
       payload: new Error(`File size is too huge: ${file.size} bytes. We dont accept anything greater than 5 mb`),
       error: true
     });
@@ -44,44 +45,66 @@ export const updateImageFile = file => dispatch => {
 
   if(file.type && !file.type.startsWith("image/")){
     return dispatch({
-      type: K.UPLOADING_IMAGE,
+      type: K.PROCESSING_IMAGE,
       payload: new Error(`Only image based file formats are supported. You uploaded: ${file.type}`),
       error: true
     });
   }
 
   const objectURL = window.URL.createObjectURL(file);
-  console.log(objectURL);
   const img = document.createElement("img");
   img.src = objectURL;
+
   img.onload = () => {
-    console.log(img.width);
-    console.log(img.height);
     const ratio = (img.width/img.height).toFixed(4);
-    console.log(ratio);
-    console.log(acceptableImages);
     if(!acceptableImages[ratio]){
       dispatch({
-        type: K.UPLOADING_IMAGE,
+        type: K.PROCESSING_IMAGE,
         payload: new Error(`Width & Height Dimensions of the uploaded image are not supported - ${img.width} / ${img.height}`),
         error: true
       });
     }else{
       dispatch({
-        type: K.UPLOADING_IMAGE,
+        type: K.PROCESSING_IMAGE,
         payload: {},
       });
 
       dispatch({
         type: K.UPDATE_IMAGE_FILE,
         payload: {
-          fileName: file.name || "unknown name",
+          fileName: file.name,
           url: objectURL
         },
         meta: {
           size: imageName(acceptableImages[ratio]["width"], acceptableImages[ratio]["height"])
         }
       });
+
+      WebUtil.uploadImage(file).then(
+        response => {
+          console.log("after uploading got: ", response, response.data.url);
+          dispatch({
+            type: K.UPDATE_IMAGE_FILE,
+            payload: {
+              fileName: file.name,
+              url: response.data.url
+            },
+            meta: {
+              size: imageName(acceptableImages[ratio]["width"], acceptableImages[ratio]["height"])
+            }
+          });
+        },
+        response => {
+          dispatch({
+            type: K.UPDATE_IMAGE_FILE,
+            payload: new Error("Unable to upload the file"),
+            error: true,
+            meta: {
+              size: imageName(acceptableImages[ratio]["width"], acceptableImages[ratio]["height"])
+            }
+          });
+        }
+      );
     }
   }
 };

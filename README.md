@@ -30,6 +30,8 @@ HighChart Component to render charts and update from state
 
 Added Tab based Navigation. It uses `withRouter`
 
+Added Code to upload an imAGE
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -38,11 +40,10 @@ A backend API server which responds to:
 - `http://localhost:3000/users/sign_in`
 - `http://localhost:3000/users`
 - `http://localhost:3000/users/password`
+- `http://localhost:3000/users/1/ads`
 
 ###TODO:
 
-- Add Uploading file
-- manipuate page onClick - auth project
 - add, show, update & delete of phone numbers
 - Add debugging to Tests
 - Add standards project
@@ -51,3 +52,4 @@ A backend API server which responds to:
 - IDE - nuclide
 - Flow, watchman
 - Animation - https://facebook.github.io/react/docs/animation.html
+- Use local state in react component
