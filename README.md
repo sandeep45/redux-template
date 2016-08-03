@@ -49,11 +49,9 @@ A backend API server which responds to:
 ###TODO:
 
 - Use Flexbox to center the auth page
-- Add standards project
 - Sorting in tables
-- IDE - nuclide
 - Flow, watchman
--
+- Webstorm - Read, Watch & Practice
 - Use local state in react component
 - add, show, update & delete of phone numbers
 - Route Animation

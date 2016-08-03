@@ -1,6 +1,4 @@
-import axios from 'axios';
-import {normalize,arrayOf} from 'normalizr'
-import * as MySchema from './MySchema'
+import axios from 'axios'
 
 export const uploadImage = (file) => {
   var formData = new FormData();
