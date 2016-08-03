@@ -27,7 +27,7 @@ class TabNav extends Component{
 
     return(
       <div>
-        <div class="page-header">
+        <div className="page-header">
           <h1>Tab Nav Example</h1>
         </div>
         <ul className="nav nav-tabs">

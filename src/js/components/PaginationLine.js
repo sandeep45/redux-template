@@ -4,11 +4,11 @@ class PaginationLine extends Component {
 
   constructor(props){
     super(props);
-  };
+  }
 
   componentWillMount(){
     // this.props.onPageNumberClick(1);
-  };
+  }
 
   render(){
     const {startNumber, endNumber, currentPageNumber} = this.props;
@@ -40,21 +40,21 @@ class PaginationLine extends Component {
         </ul>
       </nav>
     );
-  };
+  }
 
-  _paginationClickHandler = (evt) => {
+  _paginationClickHandler = evt => {
     console.log("on click of pagination button: ", evt.target.innerText);
     this.props.onPageNumberClick(parseInt(evt.target.innerText));
-  };
+  }
 
-  _forwardClickHandler = (evt) => {
+  _forwardClickHandler = evt => {
     console.log("on forward arrow click button: ", evt.target.innerText);
     this.props.updateStartNumber(this.props.endNumber+1)
     this.props.updateEndNumber(this.props.endNumber+10)
     this.props.onPageNumberClick(this.props.endNumber+1);
-  };
+  }
 
-  _backArrowClickHandler = (evt) => {
+  _backArrowClickHandler = evt => {
     console.log("on back arrow click button: ", evt.target.innerText);
     this.props.updateStartNumber(this.props.startNumber-10)
     this.props.updateEndNumber(this.props.startNumber-1)

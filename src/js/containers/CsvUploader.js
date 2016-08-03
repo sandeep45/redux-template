@@ -42,7 +42,7 @@ class CsvUploader extends Component {
   render(){
     return (
       <div>
-        <div class="page-header">
+        <div className="page-header">
           <h1>CSV Example <small>/ processing & UI</small></h1>
         </div>
         <CsvUploadArea {...this.props} />

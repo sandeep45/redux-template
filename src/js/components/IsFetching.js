@@ -1,16 +1,12 @@
-import React, { PropTypes, Component } from 'react'
+import React, { Component } from 'react'
 
 const IsFetching = (props) => {
 
-  return(
+  return (
     <div>
       Fetching...
     </div>
-  );
-};
-
-IsFetching.propsTypes = {
+  )
 }
 
-export default IsFetching;
-
+export default IsFetching

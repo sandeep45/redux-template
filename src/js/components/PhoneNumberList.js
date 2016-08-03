@@ -1,5 +1,7 @@
 import React, { PropTypes, Component } from 'react'
 import {Link} from 'react-router'
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group');
+
 
 class PhoneNumberList extends Component {
   static propTypes = {
@@ -31,18 +33,20 @@ class PhoneNumberList extends Component {
                 <th>Id</th><th>Name</th><th>Number</th>
               </tr>
             </thead>
-            <tbody>
+              <ReactCSSTransitionGroup component="tbody" transitionName="example"
+                transitionEnterTimeout={500} transitionLeaveTimeout={300}
+                transitionAppear={true} transitionAppearTimeout={500}>
               {phoneNumbers.map( (item) => {
                   return (
-                    <tr key={item.id}>
-                      <td>{item.id}</td>
-                      <td>{item.name}</td>
-                      <td>{item.number}</td>
-                    </tr>
+                      <tr key={item.id}>
+                        <td>{item.id}</td>
+                        <td>{item.name}</td>
+                        <td>{item.number}</td>
+                      </tr>
                   );
                 }
               )}
-            </tbody>
+              </ReactCSSTransitionGroup>
           </table>
         </div>
       </div>

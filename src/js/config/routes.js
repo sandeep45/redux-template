@@ -30,36 +30,35 @@ const routes = (store) => {
 
   return (
       <Route>
+          <Route path="/" component={App} onEnter={requireAuth}>
 
-        <Route path="/" component={App} onEnter={requireAuth}>
-          <IndexRoute component={HelloWorld} />
-
-          <Route path="paginated_phone_numbers" component={PaginatedPhoneNumbers} />
-
-          <Route component={BottomNav} >
-            <Route path="csv_uploader" component={CsvUploader} />
-            <Route path="image_uploader" component={ImageUploader} />
-          </Route>
-
-          <Route path="tab_nav" component={TabNav}>
             <IndexRoute component={HelloWorld} />
+
             <Route path="paginated_phone_numbers" component={PaginatedPhoneNumbers} />
+
+            <Route component={BottomNav} >
+              <Route path="csv_uploader" component={CsvUploader} />
+              <Route path="image_uploader" component={ImageUploader} />
+            </Route>
+
+            <Route path="tab_nav" component={TabNav}>
+              <IndexRoute component={HelloWorld} />
+              <Route path="paginated_phone_numbers" component={PaginatedPhoneNumbers} />
+              <Route path="my_chart" component={CsvStatChart} />
+            </Route>
+
             <Route path="my_chart" component={CsvStatChart} />
           </Route>
 
-          <Route path="my_chart" component={CsvStatChart} />
-        </Route>
+          <Route path="/auth" component={Auth}>
+            <IndexRoute component={Login} />
 
-        <Route path="/auth" component={Auth}>
-          <IndexRoute component={Login} />
+            <Route path="login" component={Login} />
+            <Route path="signup" component={SignUp} />
+            <Route path="forgot_password" component={ForgotPassword} />
+          </Route>
 
-          <Route path="login" component={Login} />
-          <Route path="signup" component={SignUp} />
-          <Route path="forgot_password" component={ForgotPassword} />
-        </Route>
-
-        <Route path="*" component={PageNotFound} />
-
+          <Route path="*" component={PageNotFound} />
       </Route>
   );
 }

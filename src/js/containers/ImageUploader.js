@@ -31,7 +31,7 @@ class ImageUploader extends Component {
   render(){
     return (
       <div>
-        <div class="page-header">
+        <div className="page-header">
           <h1>Image Uploader Example <small>/ various sizes with preview</small></h1>
           <ImageUploadArea {...this.props} />
           <AllImagesPreview {...this.props} />

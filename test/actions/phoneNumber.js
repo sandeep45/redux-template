@@ -45,7 +45,6 @@ describe("fetchPhoneNumbers2", () => {
   it("dispatches action with payload & no error after web call is successfuly", () => {
 
     nocks.phoneNumbersIndexSuccess(nock);
-
     const result = store.dispatch(
       phoneNumberActions.fetchPhoneNumbers2("1")
     );

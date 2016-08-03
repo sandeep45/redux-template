@@ -1,3 +1,5 @@
+[![JavaScript Style Guide](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+
 A redux project to serve as a template to start building a redux-react app.
 
 ````
@@ -32,6 +34,8 @@ Added Tab based Navigation. It uses `withRouter`
 
 Added Code to upload an imAGE
 
+To run tests in debug mode use `npm run test:debug`, then use `repl` where u need to get a promt for evaluating variables.
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -44,12 +48,14 @@ A backend API server which responds to:
 
 ###TODO:
 
-- add, show, update & delete of phone numbers
-- Add debugging to Tests
+- Use Flexbox to center the auth page
 - Add standards project
 - Sorting in tables
-- Use Flexbox to center the auth page
 - IDE - nuclide
 - Flow, watchman
-- Animation - https://facebook.github.io/react/docs/animation.html
+-
 - Use local state in react component
+- add, show, update & delete of phone numbers
+- Route Animation
+
+

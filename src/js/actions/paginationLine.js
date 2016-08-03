@@ -1,22 +1,19 @@
-import K from "../constants/"
+import K from '../constants/'
 
 export const updatePageNumber = (pageNumber) => {
   return {
     type: K.UPDATE_PAGE_NUMBER,
-    pageNumber
-  }
-};
+  pageNumber}
+}
 
 export const updateStartNumber = (startNumber) => {
   return {
     type: K.UPDATE_START_NUMBER,
-    startNumber
-  }
-};
+  startNumber}
+}
 
 export const updateEndNumber = (endNumber) => {
   return {
     type: K.UPDATE_END_NUMBER,
-    endNumber
-  }
-};
+  endNumber}
+}

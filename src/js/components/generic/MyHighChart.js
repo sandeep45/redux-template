@@ -63,12 +63,12 @@ class MyHighChart extends Component{
   }
 
   render(){
-    const {options, modules, ...others} = this.props;
+    const {options, modules, style, className, ...others} = this.props;
     return(
       <div>
         <div
           ref={c => this._myChart = c}
-          {...others}
+          style={style} className={className}
         >
         </div>
       </div>

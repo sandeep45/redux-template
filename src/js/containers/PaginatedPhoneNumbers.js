@@ -31,7 +31,7 @@ class PaginatedPhoneNumbers extends Component {
     } else {
       return(
         <div>
-          <div class="page-header">
+          <div className="page-header">
             <h1>Phone Numbers <small>Paginated</small></h1>
           </div>
           <PhoneNumberList {...this.props} />

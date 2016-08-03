@@ -56,7 +56,7 @@ class CsvStatChart extends Component {
   render(){
     return (
       <div>
-        <div class="page-header">
+        <div className="page-header">
           <h1>My Chart <small> / with Highcharts </small> </h1>
           <MyHighchart {...this.props} style={{width:"100%", height:"400px"}} />
         </div>

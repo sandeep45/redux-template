@@ -1,7 +1,7 @@
-import * as WebUtil from "../config/WebUtil.js"
-import K from "../constants/"
+import * as WebUtil from '../config/WebUtil.js'
+import K from '../constants/'
 import * as MySchema from '../config/MySchema'
-import {normalize} from 'normalizr'
+import { normalize } from 'normalizr'
 
 export const fetchPhoneNumbers2 = (pageNumber) => (dispatch) => {
 
@@ -11,11 +11,11 @@ export const fetchPhoneNumbers2 = (pageNumber) => (dispatch) => {
       pageNumber,
       source: MySchema.phoneNumber.getKey()
     }
-  });
+  })
 
   return WebUtil.getAllPhoneNumbers2(pageNumber).then(
     response => {
-      const normalizedData = normalize(response.data, MySchema.arrayOfPhoneNumbers);
+      const normalizedData = normalize(response.data, MySchema.arrayOfPhoneNumbers)
       dispatch({
         type: K.RECEIVE_PHONE_NUMBERS,
         payload: normalizedData,
@@ -23,15 +23,11 @@ export const fetchPhoneNumbers2 = (pageNumber) => (dispatch) => {
           pageNumber,
           source: MySchema.phoneNumber.getKey()
         }
-      });
+      })
     },
     response => {
-      let errorObj;
-      if(response.constructor == Error){
-        errorObj == response;
-      }else{
-        errorObj = new Error("error getting phone numbers: " + response.status);
-      }
+      let errorObj
+      errorObj = new Error('error getting phone numbers: ' + response.status)
       dispatch({
         type: K.RECEIVE_PHONE_NUMBERS,
         payload: errorObj,
@@ -40,14 +36,14 @@ export const fetchPhoneNumbers2 = (pageNumber) => (dispatch) => {
           pageNumber,
           source: MySchema.phoneNumber.getKey()
         }
-      });
+      })
     }
   )
-};
+}
 
-export const refreshPageOfPhoneNumbers = () =>{
+export const refreshPageOfPhoneNumbers = () => {
   return (dispatch, getState) => {
-    const state = getState();
-    dispatch(fetchPhoneNumbers2(state.paginationLine.currentPage));
+    const state = getState()
+    dispatch(fetchPhoneNumbers2(state.paginationLine.currentPage))
   }
 }
