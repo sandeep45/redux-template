@@ -1,3 +1,5 @@
+// @flow
+
 import * as WebUtil from '../config/WebUtil.js'
 import axios from 'axios'
 import K from '../constants/'

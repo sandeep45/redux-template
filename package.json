@@ -14,7 +14,8 @@
     "test:debug": "npm test -- debug",
     "dev_compile": "NODE_ENV=development webpack --progress --colors --display-error-details --display-chunks --display-reasons",
     "prod_compile": "NODE_ENV=production webpack -p -d --progress --colors --display-error-details --display-chunks --display-reasons --config webpack.production.config.js",
-    "clean": "rm ./dist/bundle.js"
+    "clean": "rm ./dist/bundle.js",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "dependencies": {
     "axios": "^0.13.1",
@@ -56,6 +57,7 @@
     "babel-preset-stage-1": "^6.5.0",
     "babel-register": "^6.9.0",
     "expect": "^1.20.1",
+    "flow-bin": "^0.30.0",
     "mocha": "^2.5.3",
     "nock": "^8.0.0",
     "node-inspector": "^0.12.8",

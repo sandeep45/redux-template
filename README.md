@@ -36,6 +36,8 @@ Added Code to upload an imAGE
 
 To run tests in debug mode use `npm run test:debug`, then use `repl` where u need to get a promt for evaluating variables.
 
+Added Flow.
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -48,9 +50,8 @@ A backend API server which responds to:
 
 ###TODO:
 
-- Use Flexbox to center the auth page
 - Sorting in tables
-- Flow, watchman
+- watchman to run flow in real time
 - Webstorm - Read, Watch & Practice
 - Use local state in react component
 - add, show, update & delete of phone numbers
