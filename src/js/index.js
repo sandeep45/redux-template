@@ -7,6 +7,7 @@ require("bootstrap");
 
 require("../css/app.css");
 require('../css/login.css');
+require('../css/modal.css');
 
 import React from 'react'
 import { render } from 'react-dom'

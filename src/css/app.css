@@ -15,7 +15,7 @@ body {
 
 }
 .app-container {
-  margin-top: 70px;
+  margin-top: 50px;
   margin-bottom: 60px;
 }
 .auth-container {
@@ -81,3 +81,4 @@ body {
   opacity: 1;
   transition: opacity .5s ease-in;
 }
+

@@ -38,6 +38,8 @@ To run tests in debug mode use `npm run test:debug`, then use `repl` where u nee
 
 Added Flow.
 
+Bootstrap Modal Component to be used from redux.
+
 ### Dependecies:
 
 A backend API server which responds to:
@@ -49,7 +51,7 @@ A backend API server which responds to:
 - `http://localhost:3000/users/1/ads`
 
 ###TODO:
-
+- Tooltip with image
 - Sorting in tables
 - watchman to run flow in real time
 - Webstorm - Read, Watch & Practice

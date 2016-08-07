@@ -16,6 +16,9 @@ var appConstants = keyMirror({
 
   UPDATE_IMAGE_FILE: null,
   PROCESSING_IMAGE: null,
+
+  SHOW_MODAL: null,
+  HIDE_MODAL: null
 });
 
 export default appConstants;

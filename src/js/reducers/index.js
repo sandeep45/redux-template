@@ -8,6 +8,7 @@ import paginationLine from './paginationLine.js'
 import authentication, * as fromAuthentication from './authentication.js'
 import csvData, * as fromCsvData from './csvData.js'
 import imageFile, * as fromImageFile from './imageFile.js'
+import modalsByName, * as fromModalsByName from './modalsByName.js'
 
 const rootReducer = (state, action) => {
   if (action.type === 'DO_LOGOUT') {
@@ -23,6 +24,7 @@ const myReducer = combineReducers({
   authentication: authentication,
   csvData,
   imageFile,
+  modalsByName
 });
 
 export default rootReducer;
@@ -76,4 +78,5 @@ export const getImageProcessorError = (state) => fromImageFile.getImageProcessor
 
 export const getImageNameBySize = (state, size) => fromImageFile.getImageNameBySize(state.imageFile, size)
 export const getImageUrlBySize = (state, size) => fromImageFile.getImageUrlBySize(state.imageFile, size)
-export const getImagesBySize = (state) => fromImageFile.getImagesBySize(state.imageFile)
+export const getImagesBySize = (state) => fromImageFile.getImagesBySize(state.imageFile);
+export const showModal = (state, name) => fromModalsByName.showModal(state.modalsByName, name);

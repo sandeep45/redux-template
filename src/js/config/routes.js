@@ -16,6 +16,7 @@ import PageNotFound from "../components/PageNotFound"
 import PaginatedPhoneNumbers from "../containers/PaginatedPhoneNumbers"
 import CsvUploader from "../containers/CsvUploader"
 import ImageUploader from "../containers/ImageUploader"
+import ModalPlayground from "../containers/ModalPlayground"
 
 
 const routes = (store) => {
@@ -48,6 +49,8 @@ const routes = (store) => {
             </Route>
 
             <Route path="my_chart" component={CsvStatChart} />
+            <Route path="modal_playground" component={ModalPlayground} />
+
           </Route>
 
           <Route path="/auth" component={Auth}>

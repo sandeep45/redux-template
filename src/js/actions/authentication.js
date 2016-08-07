@@ -1,7 +1,6 @@
 // @flow
 
 import * as WebUtil from '../config/WebUtil.js'
-import axios from 'axios'
 import K from '../constants/'
 import * as MySchema from '../config/MySchema'
 import { normalize } from 'normalizr'
