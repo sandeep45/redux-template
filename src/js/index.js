@@ -18,12 +18,29 @@ import routes from './config/routes'
 import App from './components/App'
 import configureStore from './configureStore'
 
-const initialStoreState = {}
+import { normalize } from 'normalizr'
+import * as MySchema from './config/mySchema'
+import * as WebUtil from './config/webUtil'
+import * as reducers from './reducers'
+import * as actions from './actions'
+import axios from 'axios'
+import * as helpers from './config/helpers'
+
+const initialStoreState = helpers.getInitialData();
 
 let store = configureStore(initialStoreState);
 window.store = store; // for debugging only
+window.axios = axios; // for debugging only
+window.reducers = reducers; // for debugging only
+window.actions = actions; // for debugging only
+window.normalize = normalize; // for debugging only
+window.MySchema = MySchema; // for debugging only
+window.WebUtil = WebUtil; // for debugging only
 
-console.log("__X__" + __X__);
+window.onunload = () => {
+  sessionStorage.setItem("my-app-initial-data", JSON.stringify(store.getState()));
+};
+
 
 render(
   <Provider store={store}>

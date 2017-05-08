@@ -2,7 +2,7 @@ var webpack = require("webpack");
 
 var devFlagPlugin = new webpack.DefinePlugin({
   __DEV__: JSON.stringify(JSON.parse(process.env.DEBUG || 'false')),
-  __X__: JSON.stringify(JSON.parse(process.env.X || 'false'))
+  __X__: JSON.stringify(JSON.parse(process.env.X || 'false')),
 });
 
 module.exports = {

@@ -50,6 +50,15 @@ A backend API server which responds to:
 - `http://localhost:3000/users/password`
 - `http://localhost:3000/users/1/ads`
 
+### Customize
+
+- specify local storage key for storing app data in `index.js` 
+  ```
+  sessionStorage.setItem("my-app-initial-data", JSON.stringify(store.getState()));
+  ```
+- 
+
+
 ###TODO:
 - Tooltip with image
 - Sorting in tables
