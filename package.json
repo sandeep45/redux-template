@@ -14,7 +14,7 @@
     "test:debug": "npm test -- debug",
     "dev_compile": "NODE_ENV=development webpack --progress --colors --display-error-details --display-chunks --display-reasons",
     "prod_compile": "NODE_ENV=production webpack -p -d --progress --colors --display-error-details --display-chunks --display-reasons --config webpack.production.config.js",
-    "clean": "rm ./dist/bundle.js",
+    "clean": "rm ./dist/*.bundle.js ./dist/*.png ./dist/*.woff2 ./dist/*.ttf ./dist/*.svg ./dist/*.woff ./dist/*.eot",
     "flow": "flow; test $? -eq 0 -o $? -eq 2"
   },
   "dependencies": {
